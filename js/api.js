@@ -1,5 +1,5 @@
 
-let API_TOKEN = 'KJUQD3VVEG97P7PWZI4BJWZ3CNGTPOCAKQX8SJI0';
+let API_TOKEN = '9KGEZKLM5RW5WVH2RGC7FGSK8L50O3QGSRFRGF6G';
 // 9KGEZKLM5RW5WVH2RGC7FGSK8L50O3QGSRFRGF6G neuer token
 // KJUQD3VVEG97P7PWZI4BJWZ3CNGTPOCAKQX8SJI0 alter token
 let API_URL = 'https://remote-storage.developerakademie.org/item';
@@ -242,18 +242,24 @@ async function getItem(key) {
 }
 
 /**
- * Tries to register a new user.
- * @param {string} name - The name of the user.
- * @param {string} email - The email of the user.
- * @param {string} password - The password of the user.
- * @throws {string} Error message if registration fails.
- */
+ 
+Tries to register a new user.
+@param {string} name - The name of the user.
+@param {string} email - The email of the user.
+@param {string} password - The password of the user.
+@throws {string} Error message if registration fails.
+*/
 async function tryRegisterUser(
   name,
   email,
   password,
 ) {
-  let existingUsers = await getItem(USERS_TABLE);
+  let existingUsers = [];
+  try {
+    existingUsers = await getItem(USERS_TABLE);
+  } catch {
+    // nothing
+  }
   for (let user of existingUsers) {
     if (user.email.toLowerCase() === email.toLowerCase()) {
       throw "This e-mail address already exists";
