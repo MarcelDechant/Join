@@ -41,7 +41,7 @@ async function loginUser(credentials, checkBox) {
         state.rememberMe = null;
     }
     saveToDisk();
-    window.location.href = "summary.html";
+    window.location.href = "html/summary.html";
 }
 
 /**
